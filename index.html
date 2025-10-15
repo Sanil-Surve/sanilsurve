@@ -72,8 +72,8 @@
   <body class="bg-netflix-darker text-white scroll-smooth overflow-x-hidden">
     <!-- Netflix-style Header -->
     <header class="fixed top-0 w-full z-50 bg-netflix-darker/80 glass backdrop-blur-md transition-all duration-300 animate-fade-in">
-      <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        <h1 class="text-2xl font-bold gradient-text cursor-pointer hover:scale-105 transition-transform">
+      <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4">
+        <h1 class="text-xl sm:text-2xl font-bold gradient-text cursor-pointer hover:scale-105 transition-transform">
           SANIL SURVE
         </h1>
         <button
@@ -98,7 +98,7 @@
           <a href="#projects" class="nav-link block px-6 py-3 lg:py-0 text-lg font-medium hover:text-netflix transition-all duration-300 hover:scale-105">
             Projects
           </a>
-          <a href="#contact" class="nav-link block px-6 py-3 lg:py-0 bg-netflix hover:bg-red-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <a href="#contact" class="nav-link block lg:py-0 bg-netflix hover:bg-red-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg">
             Contact
           </a>
         </nav>
@@ -106,7 +106,7 @@
     </header>
 
     <!-- Spacer for fixed header -->
-    <div class="h-20"></div>
+    <div class="h-16 sm:h-20"></div>
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-netflix-darker via-netflix-dark to-netflix-gray overflow-hidden">
@@ -118,25 +118,25 @@
         <div class="absolute bottom-20 right-10 w-2 h-2 bg-white/50 rounded-full animate-pulse"></div>
       </div>
       
-      <div class="relative z-10 max-w-6xl mx-auto px-6 text-center animate-slide-up">
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center animate-slide-up">
         <div class="mb-8 animate-scale-in">
           <div class="relative inline-block">
             <img
               src="assets/profile.jpg"
               alt="Sanil Surve - Full Stack Developer"
-              class="w-48 h-48 mx-auto rounded-full shadow-2xl border-4 border-netflix/50 hover:border-netflix transition-all duration-500 hover:scale-105 animate-glow"
+              class="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 mx-auto rounded-full shadow-2xl border-4 border-netflix/50 hover:border-netflix transition-all duration-500 hover:scale-105 animate-glow"
             />
             <div class="absolute inset-0 rounded-full bg-gradient-to-br from-netflix/20 to-transparent animate-pulse"></div>
           </div>
         </div>
         
-        <h1 class="text-6xl md:text-8xl font-bold mb-6 animate-slide-up">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up">
           <span class="gradient-text">Hi, I'm</span>
           <br>
           <span class="text-white hover:text-netflix transition-colors duration-500">Sanil Surve</span>
         </h1>
         
-        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+        <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
           A passionate <span class="text-netflix font-semibold">Full Stack Developer</span> crafting innovative solutions with 
           <span class="gradient-text font-semibold">MERN stack, AI, and IoT</span> technologies.
         </p>
@@ -161,8 +161,8 @@
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-netflix-dark">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16 gradient-text animate-slide-up">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 gradient-text animate-slide-up">
           About Me
         </h2>
         
@@ -223,8 +223,8 @@
 
     <!-- Skills Section -->
     <section id="skills" class="py-20 bg-netflix-darker">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-12 gradient-text">Skills</h2>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 sm:mb-12 gradient-text">Skills</h2>
         
         <div class="space-y-10">
           <!-- Skill Row 1: Netflix-like row slider -->
@@ -287,13 +287,13 @@
 
     <!-- Projects Section -->
     <section id="projects" class="py-20 bg-netflix-dark">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-5xl font-bold text-center mb-16 gradient-text">Featured Projects</h2>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 gradient-text">Featured Projects</h2>
         
         <div class="space-y-12">
           <!-- Featured Project Row -->
           <div>
-            <h3 class="text-3xl font-semibold mb-6 text-white">🚀 Latest Work</h3>
+            <h3 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 text-white">🚀 Latest Work</h3>
             <div class="grid md:grid-cols-3 gap-8">
               
               <!-- Project 1: Academixaid - Hero Project -->
@@ -345,8 +345,8 @@
                     </a>
                     
                     <div class="absolute bottom-0 left-0 p-4">
-                      <h4 class="text-xl font-bold text-gray-700 mb-1">LinguistIQ</h4>
-                      <p class="text-gray-500 text-sm mb-2">Chrome extension for interactive learning</p>
+                      <h4 class="text-xl font-bold text-white mb-1">LinguistIQ</h4>
+                      <p class="text-gray-300 text-sm mb-2">Chrome extension for interactive learning</p>
                       <div class="flex gap-2">
                         <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">Extension</span>
                         <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">React</span>
@@ -368,8 +368,8 @@
                     </a>
                     
                     <div class="absolute bottom-0 left-0 p-4">
-                      <h4 class="text-xl font-bold text-gray-700 mb-1">AI Chatbot with Streaming Output</h4>
-                      <p class="text-gray-500 text-sm mb-2">A Customer Support Chatbot</p>
+                      <h4 class="text-xl font-bold text-white mb-1">AI Chatbot with Streaming Output</h4>
+                      <p class="text-gray-300 text-sm mb-2">A Customer Support Chatbot</p>
                       <div class="flex gap-2">
                         <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">React & Tailwind</span>
                         <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">LLM with Websockets and Express.js</span>
@@ -396,8 +396,8 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-netflix-darker">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-5xl font-bold mb-8 gradient-text">Let's Connect</h2>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 gradient-text">Let's Connect</h2>
         <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
           Ready to build something extraordinary together? I'm always excited to discuss new opportunities and innovative projects.
         </p>
@@ -444,7 +444,7 @@
 
     <!-- Footer -->
     <footer class="bg-netflix-darker border-t border-netflix-gray py-8">
-      <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="mb-4 md:mb-0">
             <h3 class="text-xl font-bold gradient-text">SANIL SURVE</h3>
@@ -485,7 +485,7 @@
               block: 'start'
             });
             // Close mobile menu if open
-            menu.classList.add('hidden');
+            if (menu) menu.classList.add('hidden');
           }
         });
       });
