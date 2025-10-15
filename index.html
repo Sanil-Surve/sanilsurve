@@ -3,245 +3,562 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sanil Surve</title>
+    <title>Sanil Surve - Full Stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 text-gray-800">
-    <!-- Header -->
-    <!-- <header class="bg-gray-800 text-white p-4">
-    <div class="max-w-5xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Sanil</h1>
-      <nav>
-        <a href="#about" class="text-lg px-4 hover:text-yellow-300">About</a>
-        <a href="#skills" class="text-lg px-4 hover:text-yellow-300">Skills</a>
-        <a href="#projects" class="text-lg px-4 hover:text-yellow-300">Projects</a>
-      </nav>
-    </div>
-  </header> -->
 
-    <header class="bg-gray-800 text-white p-4">
-      <div class="max-w-5xl mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold">Sanil Surve</h1>
+
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          netflix: '#E50914',
+          'netflix-dark': '#221F1F',
+          'netflix-darker': '#141414',
+          'netflix-gray': '#333333'
+        },
+        animation: {
+          'fade-in': 'fadeIn 0.5s ease-in-out',
+          'slide-up': 'slideUp 0.6s ease-out',
+          'scale-in': 'scaleIn 0.4s ease-out',
+          'glow': 'glow 2s ease-in-out infinite alternate'
+        },
+        keyframes: {
+          fadeIn: {
+            '0%': { opacity: '0' },
+            '100%': { opacity: '1' }
+          },
+          slideUp: {
+            '0%': { transform: 'translateY(30px)', opacity: '0' },
+            '100%': { transform: 'translateY(0)', opacity: '1' }
+          },
+          scaleIn: {
+            '0%': { transform: 'scale(0.9)', opacity: '0' },
+            '100%': { transform: 'scale(1)', opacity: '1' }
+          },
+          glow: {
+            '0%': { boxShadow: '0 0 5px #E50914, 0 0 10px #E50914, 0 0 15px #E50914' },
+            '100%': { boxShadow: '0 0 10px #E50914, 0 0 20px #E50914, 0 0 30px #E50914' }
+          }
+        }
+      }
+    }
+  };
+</script>
+
+
+    <style>
+      .gradient-text {
+        background: linear-gradient(135deg, #E50914 0%, #FF6B6B 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .glass {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .card-hover {
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .card-hover:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(229, 9, 20, 0.3);
+      }
+      .scroll-smooth {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-netflix-darker text-white scroll-smooth overflow-x-hidden">
+    <!-- Netflix-style Header -->
+    <header class="fixed top-0 w-full z-50 bg-netflix-darker/80 glass backdrop-blur-md transition-all duration-300 animate-fade-in">
+      <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+        <h1 class="text-2xl font-bold gradient-text cursor-pointer hover:scale-105 transition-transform">
+          SANIL SURVE
+        </h1>
         <button
           id="menu-toggle"
-          class="lg:hidden focus:outline-none text-white"
+          class="lg:hidden focus:outline-none text-white hover:text-netflix transition-colors"
           aria-label="Toggle menu"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
         </button>
         <nav
           id="menu"
-          class="hidden lg:flex lg:items-center lg:space-x-6 flex-col lg:flex-row absolute lg:static top-12 right-0 bg-gray-800 lg:bg-transparent w-full lg:w-auto shadow-lg lg:shadow-none z-50"
+          class="hidden lg:flex lg:items-center lg:space-x-8 flex-col lg:flex-row absolute lg:static top-full right-0 bg-netflix-darker/95 lg:bg-transparent w-full lg:w-auto shadow-xl lg:shadow-none z-40 lg:z-auto"
         >
-          <a
-            href="#about"
-            class="block px-4 py-2 lg:py-0 text-lg hover:text-yellow-300"
-          >
+          <a href="#about" class="nav-link block px-6 py-3 lg:py-0 text-lg font-medium hover:text-netflix transition-all duration-300 hover:scale-105">
             About
           </a>
-          <a
-            href="#skills"
-            class="block px-4 py-2 lg:py-0 text-lg hover:text-yellow-300"
-          >
+          <a href="#skills" class="nav-link block px-6 py-3 lg:py-0 text-lg font-medium hover:text-netflix transition-all duration-300 hover:scale-105">
             Skills
           </a>
-          <a
-            href="#projects"
-            class="block px-4 py-2 lg:py-0 text-lg hover:text-yellow-300"
-          >
+          <a href="#projects" class="nav-link block px-6 py-3 lg:py-0 text-lg font-medium hover:text-netflix transition-all duration-300 hover:scale-105">
             Projects
+          </a>
+          <a href="#contact" class="nav-link block px-6 py-3 lg:py-0 bg-netflix hover:bg-red-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            Contact
           </a>
         </nav>
       </div>
     </header>
 
-    <script>
-      const menuToggle = document.getElementById("menu-toggle");
-      const menu = document.getElementById("menu");
-
-      menuToggle.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
-    </script>
+    <!-- Spacer for fixed header -->
+    <div class="h-20"></div>
 
     <!-- Hero Section -->
-    <section class="bg-gray-200 py-20">
-      <div class="max-w-5xl mx-auto text-center">
-        <img
-          src="assets/profile.jpg"
-          alt="Profile Image"
-          class="w-40 h-auto mx-auto rounded-full shadow-lg"
-        />
-        <h2 class="text-4xl font-bold mt-6">Hi, I'm Sanil Surve</h2>
-        <p class="text-lg mt-4">
-          A passionate Full Stack Web Developer with experience in MERN stack,
-          AI, and IoT projects.
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-netflix-darker via-netflix-dark to-netflix-gray overflow-hidden">
+      <!-- Background particles/effects -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-20 left-10 w-2 h-2 bg-netflix rounded-full animate-pulse"></div>
+        <div class="absolute top-40 right-20 w-1 h-1 bg-white rounded-full animate-ping"></div>
+        <div class="absolute bottom-40 left-20 w-3 h-3 bg-netflix/50 rounded-full animate-bounce"></div>
+        <div class="absolute bottom-20 right-10 w-2 h-2 bg-white/50 rounded-full animate-pulse"></div>
+      </div>
+      
+      <div class="relative z-10 max-w-6xl mx-auto px-6 text-center animate-slide-up">
+        <div class="mb-8 animate-scale-in">
+          <div class="relative inline-block">
+            <img
+              src="assets/profile.jpg"
+              alt="Sanil Surve - Full Stack Developer"
+              class="w-48 h-48 mx-auto rounded-full shadow-2xl border-4 border-netflix/50 hover:border-netflix transition-all duration-500 hover:scale-105 animate-glow"
+            />
+            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-netflix/20 to-transparent animate-pulse"></div>
+          </div>
+        </div>
+        
+        <h1 class="text-6xl md:text-8xl font-bold mb-6 animate-slide-up">
+          <span class="gradient-text">Hi, I'm</span>
+          <br>
+          <span class="text-white hover:text-netflix transition-colors duration-500">Sanil Surve</span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+          A passionate <span class="text-netflix font-semibold">Full Stack Developer</span> crafting innovative solutions with 
+          <span class="gradient-text font-semibold">MERN stack, AI, and IoT</span> technologies.
         </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+          <a href="#projects" class="bg-netflix hover:bg-red-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl animate-glow">
+            View My Work
+          </a>
+          <a href="#about" class="glass border-white/20 hover:border-netflix/50 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105">
+            Learn More
+          </a>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <svg class="w-6 h-6 text-netflix" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10">About Me</h2>
-        <p class="text-lg leading-relaxed text-gray-700 text-center">
-          I'm a developer focused on creating innovative and efficient
-          solutions. With a strong background in web development, I enjoy
-          turning ideas into reality and building software that makes a
-          difference.
-        </p>
+    <section id="about" class="py-20 bg-netflix-dark">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-5xl font-bold text-center mb-16 gradient-text animate-slide-up">
+          About Me
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="glass p-8 rounded-2xl card-hover animate-slide-up">
+            <h3 class="text-2xl font-bold mb-6 text-netflix">My Journey</h3>
+            <p class="text-lg leading-relaxed text-gray-300 mb-6">
+              I'm a passionate developer focused on creating <span class="text-netflix font-semibold">innovative and efficient solutions</span>. 
+              With a strong foundation in web development, I transform complex ideas into elegant, user-friendly applications.
+            </p>
+            <p class="text-lg leading-relaxed text-gray-300">
+              My expertise spans across the <span class="gradient-text font-semibold">full technology stack</span>, 
+              from frontend React applications to robust backend systems, with a special interest in 
+              <span class="text-netflix font-semibold">AI integration and IoT solutions</span>.
+            </p>
+          </div>
+          
+          <div class="space-y-6 animate-fade-in">
+            <div class="glass p-6 rounded-xl card-hover">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                  </svg>
+                </div>
+                <h4 class="text-xl font-bold text-white">Full Stack Development</h4>
+              </div>
+              <p class="text-gray-300">Building end-to-end web applications with modern technologies</p>
+            </div>
+            
+            <div class="glass p-6 rounded-xl card-hover">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                  </svg>
+                </div>
+                <h4 class="text-xl font-bold text-white">AI & Innovation</h4>
+              </div>
+              <p class="text-gray-300">Integrating artificial intelligence into practical solutions</p>
+            </div>
+            
+            <div class="glass p-6 rounded-xl card-hover">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                  </svg>
+                </div>
+                <h4 class="text-xl font-bold text-white">IoT Solutions</h4>
+              </div>
+              <p class="text-gray-300">Creating connected systems and smart automation</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-100">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10">Skills</h2>
-        <div
-          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 text-center"
-        >
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">HTML & CSS</h3>
-            <p class="text-gray-700 mt-2">Building responsive designs</p>
+    <section id="skills" class="py-20 bg-netflix-darker">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-5xl font-bold text-center mb-12 gradient-text">Skills</h2>
+        
+        <div class="space-y-10">
+          <!-- Skill Row 1: Netflix-like row slider -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">Frontend</h3>
+            <div class="relative group">
+              <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
+                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                  <h4 class="text-xl font-bold">HTML & CSS</h4>
+                  <p class="text-gray-300 mt-2">Responsive layouts & accessibility</p>
+                </div>
+                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                  <h4 class="text-xl font-bold">JavaScript</h4>
+                  <p class="text-gray-300 mt-2">Modern ES features & tooling</p>
+                </div>
+                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                  <h4 class="text-xl font-bold">React & Redux Toolkit</h4>
+                  <p class="text-gray-300 mt-2">UI & state management</p>
+                </div>
+                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                  <h4 class="text-xl font-bold">Tailwind CSS</h4>
+                  <p class="text-gray-300 mt-2">Utility-first styling</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">JavaScript</h3>
-            <p class="text-gray-700 mt-2">Dynamic web development</p>
+
+          <!-- Skill Row 2 -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">Backend & Databases</h3>
+            <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
+              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                <h4 class="text-xl font-bold">Node.js</h4>
+                <p class="text-gray-300 mt-2">APIs & services</p>
+              </div>
+              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                <h4 class="text-xl font-bold">MongoDB & SQL</h4>
+                <p class="text-gray-300 mt-2">Schema design & performance</p>
+              </div>
+            </div>
           </div>
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">React & Redux toolkit</h3>
-            <p class="text-gray-700 mt-2">
-              UI development and state management
-            </p>
-          </div>
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">Node.js</h3>
-            <p class="text-gray-700 mt-2">Backend development</p>
-          </div>
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">MongoDB & Sql</h3>
-            <p class="text-gray-700 mt-2">Database design and queries</p>
-          </div>
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">Tailwind CSS</h3>
-            <p class="text-gray-700 mt-2">Modern styling framework</p>
-          </div>
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">AI & Machine Learning</h3>
-            <p class="text-gray-700 mt-2">Building intelligent systems</p>
-          </div>
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h3 class="text-xl font-bold">IoT</h3>
-            <p class="text-gray-700 mt-2">IoT systems and automation</p>
+
+          <!-- Skill Row 3 -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">AI & IoT</h3>
+            <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
+              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                <h4 class="text-xl font-bold">AI & ML</h4>
+                <p class="text-gray-300 mt-2">Applied ML for real apps</p>
+              </div>
+              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
+                <h4 class="text-xl font-bold">IoT</h4>
+                <p class="text-gray-300 mt-2">Hardware + cloud systems</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-100">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Project 1 -->
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <a
-              href="https://academixaid.site"
-              target="_blank"
-            >
-              <img
-                src="assets/project-1.png"
-                alt="Academixaid"
-                class="w-full h-40 object-cover"
-              />
-            </a>
-            <div class="p-4">
-              <h3 class="text-xl font-bold">Academixaid App</h3>
-              <p class="text-gray-700 mt-2">
-                It is an QnA Application helping for Student in Academics with
-                chat and Search Functionality
-              </p>
-              <a
-                href="https://academixaid.site"
-                target="_blank"
-                class="text-blue-600 hover:underline"
-              >
-                View Project
-              </a>
+    <section id="projects" class="py-20 bg-netflix-dark">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-5xl font-bold text-center mb-16 gradient-text">Featured Projects</h2>
+        
+        <div class="space-y-12">
+          <!-- Featured Project Row -->
+          <div>
+            <h3 class="text-3xl font-semibold mb-6 text-white">🚀 Latest Work</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+              
+              <!-- Project 1: Academixaid - Hero Project -->
+              <div class="md:col-span-2 group relative glass rounded-2xl overflow-hidden card-hover">
+                <div class="relative h-80">
+                  <a href="https://academixaid.site" target="_blank">
+                    <img
+                      src="assets/project-1.png"
+                      alt="Academixaid - Academic QnA Platform"
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  </a>
+                  
+                  <!-- Project overlay -->
+                  <div class="absolute bottom-0 left-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-3xl font-bold mb-2 text-white">Academixaid</h4>
+                    <p class="text-gray-300 mb-4 text-lg leading-relaxed">
+                      AI-powered Q&A platform revolutionizing academic assistance with smart chat and advanced search functionality.
+                    </p>
+                    <div class="flex gap-3">
+                      <span class="px-3 py-1 bg-netflix/80 text-white text-sm rounded-full">AI/ML</span>
+                      <span class="px-3 py-1 bg-netflix/80 text-white text-sm rounded-full">React</span>
+                      <span class="px-3 py-1 bg-netflix/80 text-white text-sm rounded-full">Node.js</span>
+                    </div>
+                    <a
+                      href="https://academixaid.site"
+                      target="_blank"
+                      class="inline-block mt-4 bg-netflix hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                    >
+                      Explore Live →
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Projects 2 & 3: Side Projects -->
+              <div class="space-y-6">
+                <!-- Project 2 -->
+                <div class="group glass rounded-xl overflow-hidden card-hover h-48">
+                  <div class="relative h-full">
+                    <a href="https://linguist-iq.vercel.app" target="_blank">
+                      <img
+                        src="assets/project-2.png"
+                        alt="LinguistIQ Chrome Extension"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    </a>
+                    
+                    <div class="absolute bottom-0 left-0 p-4">
+                      <h4 class="text-xl font-bold text-white mb-1">LinguistIQ</h4>
+                      <p class="text-gray-300 text-sm mb-2">Chrome extension for interactive learning</p>
+                      <div class="flex gap-2">
+                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">Extension</span>
+                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">React</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="group glass rounded-xl overflow-hidden card-hover h-48">
+                  <div class="relative h-full">
+                    <a href="https://indian-essence.vercel.app" target="_blank">
+                      <img
+                        src="assets/project-3.png"
+                        alt="Indian Essence Weather App"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    </a>
+                    
+                    <div class="absolute bottom-0 left-0 p-4">
+                      <h4 class="text-xl font-bold text-white mb-1">Indian Essence</h4>
+                      <p class="text-gray-300 text-sm mb-2">Weather app with cultural themes</p>
+                      <div class="flex gap-2">
+                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">React</span>
+                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">API</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!-- Project 2 -->
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <a href="https://linguist-iq.vercel.app" target="_blank">
-              <img
-                src="assets/project-2.png"
-                alt="LinguistIQ"
-                class="w-full h-40 object-cover"
-              />
+          
+          <!-- Call to action -->
+          <div class="text-center pt-8">
+            <a href="#contact" class="inline-flex items-center bg-gradient-to-r from-netflix to-red-600 hover:from-red-600 hover:to-netflix text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+              Let's Build Something Amazing
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
             </a>
-            <div class="p-4">
-              <h3 class="text-xl font-bold">LinguistIQ</h3>
-              <p class="text-gray-700 mt-2">
-                A Chrome Extension for generating lessons and quizzes for
-                Students.
-              </p>
-              <a
-                href="https://linguist-iq.vercel.app"
-                target="_blank"
-                class="text-blue-600 hover:underline"
-              >
-                View Project
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <a href="https://indian-essence.vercel.app" target="_blank">
-              <img
-                src="assets/project-3.png"
-                alt="indian Essence"
-                class="w-full h-40 object-cover"
-              />
-            </a>
-            <div class="p-4">
-              <h3 class="text-xl font-bold">Indian Essence App</h3>
-              <p class="text-gray-700 mt-2">
-                A React-based app to display weather updates with dark mode
-                support.
-              </p>
-              <a
-                href="https://indian-essence.vercel.app"
-                target="_blank"
-                class="text-blue-600 hover:underline"
-              >
-                View Project
-              </a>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-netflix-darker">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-5xl font-bold mb-8 gradient-text">Let's Connect</h2>
+        <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+          Ready to build something extraordinary together? I'm always excited to discuss new opportunities and innovative projects.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-6 mb-12">
+          <a href="mailto:sanilsurve@example.com" class="glass p-6 rounded-xl card-hover flex items-center gap-4 hover:border-netflix/50">
+            <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <h3 class="font-semibold text-white">Email</h3>
+              <p class="text-gray-300">sanilsurve@example.com</p>
+            </div>
+          </a>
+          
+          <a href="https://linkedin.com/in/sanilsurve" target="_blank" class="glass p-6 rounded-xl card-hover flex items-center gap-4 hover:border-netflix/50">
+            <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <h3 class="font-semibold text-white">LinkedIn</h3>
+              <p class="text-gray-300">Connect with me</p>
+            </div>
+          </a>
+          
+          <a href="https://github.com/sanilsurve" target="_blank" class="glass p-6 rounded-xl card-hover flex items-center gap-4 hover:border-netflix/50">
+            <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <h3 class="font-semibold text-white">GitHub</h3>
+              <p class="text-gray-300">Check out my code</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-      <div class="max-w-5xl mx-auto text-center">
-        <p>&copy; 2024 Sanil Surve. All rights reserved.</p>
+    <footer class="bg-netflix-darker border-t border-netflix-gray py-8">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <h3 class="text-xl font-bold gradient-text">SANIL SURVE</h3>
+            <p class="text-gray-400 mt-1">Full Stack Developer</p>
+          </div>
+          
+          <div class="flex gap-6">
+            <a href="#about" class="text-gray-400 hover:text-netflix transition-colors">About</a>
+            <a href="#skills" class="text-gray-400 hover:text-netflix transition-colors">Skills</a>
+            <a href="#projects" class="text-gray-400 hover:text-netflix transition-colors">Projects</a>
+            <a href="#contact" class="text-gray-400 hover:text-netflix transition-colors">Contact</a>
+          </div>
+          
+          <p class="text-gray-400 text-sm mt-4 md:mt-0">
+            &copy; 2024 Sanil Surve. Crafted with ❤️
+          </p>
+        </div>
       </div>
     </footer>
+
+    <script>
+      // Enhanced mobile menu toggle
+      const menuToggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("menu");
+
+      menuToggle?.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            // Close mobile menu if open
+            menu.classList.add('hidden');
+          }
+        });
+      });
+
+      // Add scrollbar styling for skill rows
+      const style = document.createElement('style');
+      style.textContent = `
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        
+        /* Add subtle scroll indicators */
+        .overflow-x-auto {
+          position: relative;
+        }
+        .overflow-x-auto::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 30px;
+          height: 100%;
+          background: linear-gradient(to right, transparent, rgba(20, 20, 20, 0.8));
+          pointer-events: none;
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Add intersection observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for animation
+      document.querySelectorAll('.animate-slide-up, .animate-fade-in, .animate-scale-in').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(el);
+      });
+
+      // Add dynamic header background on scroll
+      let lastScrollTop = 0;
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+          header.classList.add('backdrop-blur-lg');
+          header.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
+        } else {
+          header.style.backgroundColor = 'rgba(20, 20, 20, 0.8)';
+        }
+        
+        lastScrollTop = scrollTop;
+      });
+    </script>
   </body>
 </html>
