@@ -6,44 +6,39 @@
     <title>Sanil Surve - Full Stack Developer</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <style type="text/tailwindcss">
+      @theme {
+        --color-netflix: #E50914;
+        --color-netflix-dark: #221F1F;
+        --color-netflix-darker: #141414;
+        --color-netflix-gray: #333333;
 
-<style type="text/tailwindcss">
-  @theme {
-    --color-netflix: #E50914;
-    --color-netflix-dark: #221F1F;
-    --color-netflix-darker: #141414;
-    --color-netflix-gray: #333333;
+        @keyframes fade-in {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
+        }
 
-    @keyframes fade-in {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
+        @keyframes slide-up {
+          0% { transform: translateY(30px); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
+        }
 
-    @keyframes slide-up {
-      0% { transform: translateY(30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
+        @keyframes scale-in {
+          0% { transform: scale(0.9); opacity: 0; }
+          100% { transform: scale(1); opacity: 1; }
+        }
 
-    @keyframes scale-in {
-      0% { transform: scale(0.9); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
+        @keyframes glow {
+          0% { box-shadow: 0 0 5px #E50914, 0 0 10px #E50914, 0 0 15px #E50914; }
+          100% { box-shadow: 0 0 10px #E50914, 0 0 20px #E50914, 0 0 30px #E50914; }
+        }
 
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px #E50914, 0 0 10px #E50914, 0 0 15px #E50914; }
-      100% { box-shadow: 0 0 10px #E50914, 0 0 20px #E50914, 0 0 30px #E50914; }
-    }
-
-    --animate-fade-in: fade-in 0.5s ease-in-out;
-    --animate-slide-up: slide-up 0.6s ease-out;
-    --animate-scale-in: scale-in 0.4s ease-out;
-    --animate-glow: glow 2s ease-in-out infinite alternate;
-  }
-</style>
-
-
-
-
+        --animate-fade-in: fade-in 0.5s ease-in-out;
+        --animate-slide-up: slide-up 0.6s ease-out;
+        --animate-scale-in: scale-in 0.4s ease-out;
+        --animate-glow: glow 2s ease-in-out infinite alternate;
+      }
+    </style>
 
     <style>
       .gradient-text {
