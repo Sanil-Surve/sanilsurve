@@ -3,555 +3,1411 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sanil Surve - Full Stack Developer</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Sanil Surve — Full Stack Developer</title>
+    <meta name="description" content="Sanil Surve is a Full Stack Developer specializing in MERN stack, AI, and IoT solutions. View projects and get in touch." />
 
-    <style type="text/tailwindcss">
-      @theme {
-        --color-netflix: #E50914;
-        --color-netflix-dark: #221F1F;
-        --color-netflix-darker: #141414;
-        --color-netflix-gray: #333333;
-
-        @keyframes fade-in {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
-        }
-
-        @keyframes slide-up {
-          0% { transform: translateY(30px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes scale-in {
-          0% { transform: scale(0.9); opacity: 0; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes glow {
-          0% { box-shadow: 0 0 5px #E50914, 0 0 10px #E50914, 0 0 15px #E50914; }
-          100% { box-shadow: 0 0 10px #E50914, 0 0 20px #E50914, 0 0 30px #E50914; }
-        }
-
-        --animate-fade-in: fade-in 0.5s ease-in-out;
-        --animate-slide-up: slide-up 0.6s ease-out;
-        --animate-scale-in: scale-in 0.4s ease-out;
-        --animate-glow: glow 2s ease-in-out infinite alternate;
-      }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
+      /* ============================================================
+         RESET & BASE
+      ============================================================ */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --clr-bg:        #FAFAFA;
+        --clr-bg-warm:   #FFF8F4;
+        --clr-bg-purple: #F5F0FF;
+        --clr-orange:    #FF6B35;
+        --clr-orange-lt: #FFE8DE;
+        --clr-purple:    #7C3AED;
+        --clr-purple-lt: #EDE9FE;
+        --clr-cyan:      #06B6D4;
+        --clr-cyan-lt:   #CFFAFE;
+        --clr-green:     #10B981;
+        --clr-green-lt:  #D1FAE5;
+        --clr-text:      #1A1A2E;
+        --clr-muted:     #6B7280;
+        --clr-border:    #E5E7EB;
+        --clr-white:     #FFFFFF;
+        --radius-sm:     8px;
+        --radius-md:     16px;
+        --radius-lg:     24px;
+        --radius-xl:     32px;
+        --shadow-sm:     0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+        --shadow-md:     0 4px 16px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+        --shadow-lg:     0 8px 32px rgba(0,0,0,.10), 0 4px 8px rgba(0,0,0,.05);
+        --shadow-xl:     0 20px 48px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.06);
+        --font-heading:  'Outfit', sans-serif;
+        --font-body:     'Inter', sans-serif;
+        --transition:    all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--clr-bg);
+        color: var(--clr-text);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Skip link */
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 1rem;
+        z-index: 9999;
+        padding: 0.5rem 1rem;
+        background: var(--clr-orange);
+        color: white;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .skip-link:focus { left: 1rem; }
+
+      /* ============================================================
+         TYPOGRAPHY
+      ============================================================ */
+      h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.2; text-wrap: balance; }
+
       .gradient-text {
-        background: linear-gradient(135deg, #E50914 0%, #FF6B6B 100%);
+        background: linear-gradient(135deg, var(--clr-orange) 0%, #FF9A56 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      .glass {
-        backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+
+      .gradient-text-purple {
+        background: linear-gradient(135deg, var(--clr-purple) 0%, #A855F7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      .card-hover {
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+      /* ============================================================
+         LAYOUT
+      ============================================================ */
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+      section { scroll-margin-top: 80px; }
+
+      /* ============================================================
+         BUTTONS
+      ============================================================ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.75rem;
+        border-radius: 100px;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: 2px solid transparent;
+        text-decoration: none;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
       }
-      .card-hover:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(229, 9, 20, 0.3);
+      .btn:focus-visible { outline: 3px solid var(--clr-orange); outline-offset: 3px; }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--clr-orange), #FF9A56);
+        color: white;
+        box-shadow: 0 4px 16px rgba(255,107,53,.35);
       }
-      .scroll-smooth {
-        scroll-behavior: smooth;
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,53,.45); }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--clr-orange);
+        border-color: var(--clr-orange);
       }
+      .btn-outline:hover { background: var(--clr-orange-lt); transform: translateY(-2px); }
+
+      .btn-ghost {
+        background: rgba(255,255,255,.8);
+        color: var(--clr-text);
+        backdrop-filter: blur(8px);
+        border-color: var(--clr-border);
+      }
+      .btn-ghost:hover { background: white; box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+      /* ============================================================
+         CARDS
+      ============================================================ */
+      .card {
+        background: white;
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--clr-border);
+        transition: var(--transition);
+      }
+      .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+      /* ============================================================
+         BADGES / PILLS
+      ============================================================ */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.3rem 0.85rem;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        font-family: var(--font-heading);
+      }
+      .badge-orange { background: var(--clr-orange-lt); color: var(--clr-orange); }
+      .badge-purple { background: var(--clr-purple-lt); color: var(--clr-purple); }
+      .badge-cyan   { background: var(--clr-cyan-lt);   color: var(--clr-cyan); }
+      .badge-green  { background: var(--clr-green-lt);  color: var(--clr-green); }
+
+      /* ============================================================
+         FLOATING BADGES (Hero)
+      ============================================================ */
+      .float-badge {
+        position: absolute;
+        background: white;
+        border-radius: var(--radius-md);
+        padding: 0.65rem 1rem;
+        box-shadow: var(--shadow-xl);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--clr-text);
+        z-index: 10;
+        animation: floatY 3s ease-in-out infinite;
+        border: 1px solid var(--clr-border);
+      }
+      .float-badge .badge-icon {
+        width: 32px; height: 32px;
+        border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      @keyframes floatY {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-8px); }
+      }
+
+      /* ============================================================
+         BLOB / SHAPE backgrounds
+      ============================================================ */
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        pointer-events: none;
+        z-index: 0;
+        animation: blobPulse 6s ease-in-out infinite alternate;
+      }
+      @keyframes blobPulse {
+        0%   { transform: scale(1) translate(0, 0); }
+        100% { transform: scale(1.15) translate(20px, -20px); }
+      }
+
+      /* ============================================================
+         NAVBAR
+      ============================================================ */
+      #navbar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        padding: 0;
+        transition: var(--transition);
+      }
+      #navbar.scrolled .nav-inner {
+        background: rgba(255,255,255,.92);
+        backdrop-filter: blur(16px);
+        box-shadow: var(--shadow-md);
+        border-bottom: 1px solid var(--clr-border);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        background: rgba(255,255,255,.7);
+        backdrop-filter: blur(12px);
+        transition: var(--transition);
+        border-bottom: 1px solid transparent;
+      }
+      .nav-logo {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--clr-muted);
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        transition: var(--transition);
+        position: relative;
+      }
+      .nav-links a:hover { color: var(--clr-text); background: var(--clr-orange-lt); }
+      .nav-links a:focus-visible { outline: 3px solid var(--clr-orange); outline-offset: 2px; }
+
+      .nav-cta { margin-left: 0.5rem; }
+
+      #hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+      }
+      #hamburger:focus-visible { outline: 3px solid var(--clr-orange); outline-offset: 2px; }
+      #hamburger span {
+        display: block;
+        width: 24px; height: 2px;
+        background: var(--clr-text);
+        border-radius: 2px;
+        transition: var(--transition);
+      }
+      #hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #hamburger.open span:nth-child(2) { opacity: 0; }
+      #hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      /* Mobile nav */
+      #mobile-nav {
+        display: none;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: white;
+        border-bottom: 1px solid var(--clr-border);
+        box-shadow: var(--shadow-lg);
+        z-index: 99;
+        padding: 1rem 1.5rem 1.5rem;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      #mobile-nav.open { display: flex; }
+      #mobile-nav a {
+        text-decoration: none;
+        color: var(--clr-text);
+        font-weight: 500;
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+      }
+      #mobile-nav a:hover { background: var(--clr-orange-lt); color: var(--clr-orange); }
+
+      @media (max-width: 768px) {
+        .nav-links, .nav-cta { display: none; }
+        #hamburger { display: flex; }
+      }
+
+      /* ============================================================
+         HERO SECTION
+      ============================================================ */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #FFF8F4 0%, #F5F0FF 50%, #F0FAFE 100%);
+        padding: 80px 0 60px;
+      }
+      .hero-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
+        background: var(--clr-orange-lt);
+        border-radius: 100px;
+        color: var(--clr-orange);
+        font-weight: 600;
+        font-size: 0.85rem;
+        font-family: var(--font-heading);
+        margin-bottom: 1.25rem;
+      }
+      .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.08;
+        margin-bottom: 1.25rem;
+        color: var(--clr-text);
+      }
+      .hero-title .name { color: var(--clr-orange); }
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--clr-muted);
+        margin-bottom: 2rem;
+        max-width: 440px;
+        line-height: 1.7;
+      }
+      .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+      .hero-stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--clr-border);
+      }
+      .hero-stat-num {
+        font-family: var(--font-heading);
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--clr-text);
+      }
+      .hero-stat-label { font-size: 0.8rem; color: var(--clr-muted); font-weight: 500; }
+
+      /* Image side */
+      .hero-image-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-img-bg {
+        position: absolute;
+        width: 380px; height: 380px;
+        background: linear-gradient(135deg, var(--clr-orange-lt), var(--clr-purple-lt));
+        border-radius: 50%;
+        z-index: 0;
+      }
+      .hero-img {
+        width: 320px; height: 320px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 6px solid white;
+        box-shadow: var(--shadow-xl);
+        position: relative;
+        z-index: 1;
+        display: block;
+      }
+      /* Float badges positioned around image */
+      .fb-award   { top: 8%;  right: -5%;  animation-delay: 0s; }
+      .fb-uiux    { bottom: 20%; left: -12%; animation-delay: 1s; }
+      .fb-avail   { top: 30%; left: -14%;  animation-delay: 0.5s; }
+      .fb-stack   { bottom: 5%; right: -5%; animation-delay: 1.5s; }
+
+      @media (max-width: 900px) {
+        .hero-container { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+        .hero-sub { margin-left: auto; margin-right: auto; }
+        .hero-actions { justify-content: center; }
+        .hero-stats { justify-content: center; }
+        .hero-image-wrap { order: -1; }
+        .hero-img { width: 240px; height: 240px; }
+        .hero-img-bg { width: 280px; height: 280px; }
+        .fb-award   { top: -5%;  right: 5%; }
+        .fb-uiux    { bottom: 5%; left: 5%; }
+        .fb-avail   { top: 40%; left: -5%; }
+        .fb-stack   { bottom: -5%; right: 5%; }
+      }
+      @media (max-width: 480px) {
+        .float-badge { display: none; }
+      }
+
+      /* Clients row */
+      .clients-row {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--clr-border);
+        position: relative;
+        z-index: 2;
+      }
+      .clients-label { font-size: 0.8rem; color: var(--clr-muted); font-weight: 500; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 1rem; }
+      .clients-logos { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+      .client-logo {
+        height: 28px;
+        width: auto;
+        opacity: .4;
+        filter: grayscale(1);
+        transition: var(--transition);
+        flex-shrink: 0;
+      }
+      .client-logo:hover { opacity: .7; filter: grayscale(0); }
+
+      /* ============================================================
+         ABOUT SECTION
+      ============================================================ */
+      #about {
+        padding: 6rem 0;
+        background: white;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-heading);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        color: var(--clr-orange);
+        margin-bottom: 0.75rem;
+      }
+      .section-title {
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        line-height: 1.15;
+      }
+      .section-desc { color: var(--clr-muted); font-size: 1rem; line-height: 1.75; margin-bottom: 1.5rem; }
+      .about-cards { display: flex; flex-direction: column; gap: 1rem; }
+      .about-card {
+        background: var(--clr-bg);
+        border-radius: var(--radius-md);
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid var(--clr-border);
+        transition: var(--transition);
+      }
+      .about-card:hover { border-color: var(--clr-orange); box-shadow: 0 0 0 4px var(--clr-orange-lt); transform: translateX(4px); }
+      .about-card-icon {
+        width: 48px; height: 48px; border-radius: var(--radius-sm);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.35rem; flex-shrink: 0;
+      }
+      .about-card-title { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; }
+      .about-card-desc  { font-size: 0.85rem; color: var(--clr-muted); margin-top: 0.15rem; }
+
+      @media (max-width: 768px) {
+        .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      }
+
+      /* ============================================================
+         SKILLS SECTION
+      ============================================================ */
+      #skills {
+        padding: 6rem 0;
+        background: var(--clr-bg-warm);
+      }
+      .skills-header { text-align: center; margin-bottom: 3.5rem; }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.25rem;
+      }
+      .skill-card {
+        background: white;
+        border-radius: var(--radius-md);
+        padding: 1.5rem;
+        text-align: center;
+        border: 1px solid var(--clr-border);
+        transition: var(--transition);
+        cursor: default;
+      }
+      .skill-card:hover { border-color: var(--clr-orange); box-shadow: 0 0 0 4px var(--clr-orange-lt), var(--shadow-md); transform: translateY(-4px); }
+      .skill-icon {
+        width: 56px; height: 56px; border-radius: var(--radius-sm);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.75rem; margin: 0 auto 1rem;
+      }
+      .skill-name { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+      .skill-tag  { font-size: 0.75rem; color: var(--clr-muted); }
+
+      /* ============================================================
+         PROJECTS SECTION
+      ============================================================ */
+      #projects {
+        padding: 6rem 0;
+        background: white;
+      }
+      .projects-header { margin-bottom: 3rem; }
+      .projects-header-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      /* Bento grid */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 1.25rem;
+      }
+      .bento-main { grid-row: span 2; }
+      .project-card {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        position: relative;
+        background: var(--clr-bg);
+        border: 1px solid var(--clr-border);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+      .project-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-6px); }
+      .project-card:focus-visible { outline: 3px solid var(--clr-orange); outline-offset: 3px; }
+      .project-thumb {
+        width: 100%; object-fit: cover; display: block;
+        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .project-card:hover .project-thumb { transform: scale(1.06); }
+      .bento-main .project-thumb { height: 380px; }
+      .bento-side .project-thumb { height: 180px; }
+
+      .project-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(26,26,46,.9) 0%, transparent 60%);
+        display: flex; flex-direction: column; justify-content: flex-end;
+        padding: 1.5rem;
+        opacity: 1;
+      }
+      .project-title { font-family: var(--font-heading); font-weight: 800; font-size: 1.4rem; color: white; margin-bottom: 0.5rem; }
+      .bento-side .project-title { font-size: 1.05rem; }
+      .project-desc  { font-size: 0.85rem; color: rgba(255,255,255,.75); margin-bottom: 0.75rem; line-height: 1.55; }
+      .project-tags  { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+      .project-tag {
+        padding: 0.2rem 0.6rem;
+        background: rgba(255,255,255,.18);
+        backdrop-filter: blur(6px);
+        border-radius: 100px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: white;
+        border: 1px solid rgba(255,255,255,.25);
+      }
+      .project-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 0.75rem;
+        padding: 0.4rem 1rem;
+        background: var(--clr-orange);
+        color: white;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        transition: var(--transition);
+        align-self: flex-start;
+      }
+      .project-cta:hover { background: #E55A28; }
+      .bento-side .project-desc { display: none; }
+
+      @media (max-width: 768px) {
+        .bento-grid { grid-template-columns: 1fr; }
+        .bento-main { grid-row: span 1; }
+        .bento-main .project-thumb { height: 260px; }
+        .bento-side .project-desc { display: block; }
+      }
+
+      /* ============================================================
+         SERVICES / WHAT I DO SECTION
+      ============================================================ */
+      #services {
+        padding: 6rem 0;
+        background: linear-gradient(135deg, var(--clr-bg-purple), var(--clr-bg-warm));
+        position: relative;
+        overflow: hidden;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+      .service-card {
+        background: white;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        border: 1px solid var(--clr-border);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        background: linear-gradient(90deg, var(--clr-orange), #FF9A56);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      .service-card:hover::before { transform: scaleX(1); }
+      .service-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-6px); }
+      .service-icon {
+        width: 64px; height: 64px; border-radius: var(--radius-md);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.75rem; margin-bottom: 1.25rem;
+      }
+      .service-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; margin-bottom: 0.6rem; }
+      .service-desc  { font-size: 0.9rem; color: var(--clr-muted); line-height: 1.7; }
+
+      /* ============================================================
+         CONTACT SECTION
+      ============================================================ */
+      #contact {
+        padding: 6rem 0;
+        background: white;
+        text-align: center;
+      }
+      .contact-inner { max-width: 700px; margin: 0 auto; }
+      .contact-title { font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 900; margin-bottom: 1rem; }
+      .contact-desc  { font-size: 1rem; color: var(--clr-muted); margin-bottom: 2.5rem; line-height: 1.7; }
+      .contact-cards {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 2.5rem;
+      }
+      .contact-card {
+        background: var(--clr-bg);
+        border: 1px solid var(--clr-border);
+        border-radius: var(--radius-md);
+        padding: 1.25rem 1.75rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        color: var(--clr-text);
+        transition: var(--transition);
+        min-width: 200px;
+      }
+      .contact-card:hover { border-color: var(--clr-orange); box-shadow: 0 0 0 4px var(--clr-orange-lt), var(--shadow-md); transform: translateY(-3px); }
+      .contact-card:focus-visible { outline: 3px solid var(--clr-orange); outline-offset: 3px; }
+      .contact-card-icon {
+        width: 44px; height: 44px; border-radius: var(--radius-sm);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.25rem; flex-shrink: 0;
+      }
+      .contact-card-label { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; }
+      .contact-card-value { font-size: 0.82rem; color: var(--clr-muted); }
+
+      /* ============================================================
+         FOOTER
+      ============================================================ */
+      footer {
+        background: var(--clr-text);
+        color: rgba(255,255,255,.65);
+        padding: 2.5rem 0;
+      }
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-logo {
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: white;
+        text-decoration: none;
+      }
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        text-decoration: none;
+        color: rgba(255,255,255,.55);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover { color: white; }
+      .footer-links a:focus-visible { outline: 2px solid var(--clr-orange); outline-offset: 3px; border-radius: 3px; }
+      .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,.35); }
+      .footer-address-row {
+        border-top: 1px solid rgba(255,255,255,.08);
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        text-align: center;
+      }
+      .footer-address-name { color: rgba(255,255,255,.75); font-size: 0.9rem; font-weight: 600; font-family: var(--font-heading); }
+      .footer-address-text { color: rgba(255,255,255,.4); font-size: 0.8rem; margin-top: 0.25rem; }
+
+      /* ============================================================
+         ANIMATIONS
+      ============================================================ */
+      @media (prefers-reduced-motion: no-preference) {
+        .reveal {
+          opacity: 0;
+          transform: translateY(24px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+      }
+
+      /* Dot accent */
+      .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--clr-orange); }
+
+      /* Section header helpers */
+      .section-header { margin-bottom: 3.5rem; }
+      .section-header.centered { text-align: center; }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: var(--clr-orange); border-radius: 6px; }
     </style>
   </head>
-  <body class="bg-netflix-darker text-white scroll-smooth overflow-x-hidden">
-    <!-- Netflix-style Header -->
-    <header class="fixed top-0 w-full z-50 bg-netflix-darker/80 glass backdrop-blur-md transition-all duration-300 animate-fade-in">
-      <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4">
-        <h1 class="text-xl sm:text-2xl font-bold gradient-text cursor-pointer hover:scale-105 transition-transform">
-          SANIL SURVE
-        </h1>
-        <button
-          id="menu-toggle"
-          class="lg:hidden focus:outline-none text-white hover:text-netflix transition-colors"
-          aria-label="Toggle menu"
-        >
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
+  <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============================================================
+         NAVBAR
+    ============================================================ -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo gradient-text" aria-label="Sanil Surve — Home">SS</a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+
+        <a href="#contact" class="btn btn-primary nav-cta">Contact Me</a>
+
+        <button id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </button>
-        <nav
-          id="menu"
-          class="hidden lg:flex lg:items-center lg:space-x-8 flex-col lg:flex-row absolute lg:static top-full right-0 bg-netflix-darker/95 lg:bg-transparent w-full lg:w-auto shadow-xl lg:shadow-none z-40 lg:z-auto"
-        >
-          <a href="#about" class="nav-link block px-6 py-3 lg:py-0 text-lg font-medium hover:text-netflix transition-all duration-300 hover:scale-105">
-            About
-          </a>
-          <a href="#skills" class="nav-link block px-6 py-3 lg:py-0 text-lg font-medium hover:text-netflix transition-all duration-300 hover:scale-105">
-            Skills
-          </a>
-          <a href="#projects" class="nav-link block px-6 py-3 lg:py-0 text-lg font-medium hover:text-netflix transition-all duration-300 hover:scale-105">
-            Projects
-          </a>
-          <a href="#contact" class="nav-link block lg:py-0 bg-netflix hover:bg-red-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg">
-            Contact
-          </a>
-        </nav>
       </div>
-    </header>
+    </nav>
 
-    <!-- Spacer for fixed header -->
-    <div class="h-16 sm:h-20"></div>
+    <!-- Mobile nav -->
+    <nav id="mobile-nav" aria-label="Mobile navigation" role="navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" style="color: var(--clr-orange); font-weight: 700;">Contact Me</a>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-netflix-darker via-netflix-dark to-netflix-gray overflow-hidden">
-      <!-- Background particles/effects -->
-      <div class="absolute inset-0 opacity-30">
-        <div class="absolute top-20 left-10 w-2 h-2 bg-netflix rounded-full animate-pulse"></div>
-        <div class="absolute top-40 right-20 w-1 h-1 bg-white rounded-full animate-ping"></div>
-        <div class="absolute bottom-40 left-20 w-3 h-3 bg-netflix/50 rounded-full animate-bounce"></div>
-        <div class="absolute bottom-20 right-10 w-2 h-2 bg-white/50 rounded-full animate-pulse"></div>
-      </div>
-      
-      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center animate-slide-up">
-        <div class="mb-8 animate-scale-in">
-          <div class="relative inline-block">
-            <img
-              src="assets/profile.jpg"
-              alt="Sanil Surve - Full Stack Developer"
-              class="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 mx-auto rounded-full shadow-2xl border-4 border-netflix/50 hover:border-netflix transition-all duration-500 hover:scale-105 animate-glow"
-            />
-            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-netflix/20 to-transparent animate-pulse"></div>
+    <main id="main-content">
+      <!-- ============================================================
+           HERO
+      ============================================================ -->
+      <section id="hero" aria-label="Hero introduction">
+        <!-- Background blobs -->
+        <div class="blob" style="width:500px;height:500px;background:rgba(255,107,53,.12);top:-100px;right:-100px;" aria-hidden="true"></div>
+        <div class="blob" style="width:400px;height:400px;background:rgba(124,58,237,.10);bottom:-80px;left:-80px;animation-delay:3s;" aria-hidden="true"></div>
+
+        <div class="container">
+          <div class="hero-container">
+            <!-- Left: Text -->
+            <div class="hero-text reveal">
+              <span class="hero-tag">
+                <span style="width:8px;height:8px;background:var(--clr-green);border-radius:50%;animation:blink 1.5s ease-in-out infinite;" aria-hidden="true"></span>
+                Available for work
+              </span>
+              <h1 class="hero-title">
+                Hi, I'm<br>
+                <span class="name">Sanil&nbsp;Surve</span>
+              </h1>
+              <p class="hero-sub">
+                A passionate <strong>Full Stack Developer</strong> crafting innovative digital solutions with MERN stack, AI integration, and IoT technologies.
+              </p>
+              <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  View My Work
+                </a>
+                <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+              </div>
+              <div class="hero-stats">
+                <div>
+                  <div class="hero-stat-num gradient-text">20+</div>
+                  <div class="hero-stat-label">Projects Built</div>
+                </div>
+                <div>
+                  <div class="hero-stat-num gradient-text">MERN Stack</div>
+                  <div class="hero-stat-label">Primary Stack</div>
+                </div>
+                <div>
+                  <div class="hero-stat-num gradient-text">3+</div>
+                  <div class="hero-stat-label">Years Experience</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Image + floating badges -->
+            <div class="hero-image-wrap reveal reveal-delay-2">
+              <div class="hero-img-bg" aria-hidden="true"></div>
+              <img
+                src="assets/DSC_3642.JPG"
+                alt="Sanil Surve — Full Stack Developer"
+                class="hero-img"
+                width="320"
+                height="320"
+                fetchpriority="high"
+              />
+
+              <!-- Floating badges -->
+              <div class="float-badge fb-award" aria-hidden="true">
+                <div class="badge-icon" style="background:var(--clr-orange-lt);">🏆</div>
+                <div>
+                  <div style="font-size:.75rem;font-weight:700;color:var(--clr-text);">Best Projects</div>
+                  <div style="font-size:.68rem;color:var(--clr-muted);">Award Winning</div>
+                </div>
+              </div>
+
+              <div class="float-badge fb-uiux" aria-hidden="true">
+                <div class="badge-icon" style="background:var(--clr-purple-lt);">🎨</div>
+                <div>
+                  <div style="font-size:.75rem;font-weight:700;color:var(--clr-text);">UI / UX</div>
+                  <div style="font-size:.68rem;color:var(--clr-muted);">Clean Interfaces</div>
+                </div>
+              </div>
+
+              <div class="float-badge fb-avail" aria-hidden="true">
+                <div class="badge-icon" style="background:var(--clr-green-lt);">⚡</div>
+                <div>
+                  <div style="font-size:.75rem;font-weight:700;color:var(--clr-text);">Fast Delivery</div>
+                  <div style="font-size:.68rem;color:var(--clr-muted);">Always on time</div>
+                </div>
+              </div>
+
+              <div class="float-badge fb-stack" aria-hidden="true">
+                <div class="badge-icon" style="background:var(--clr-cyan-lt);">🤖</div>
+                <div>
+                  <div style="font-size:.75rem;font-weight:700;color:var(--clr-text);">AI Powered</div>
+                  <div style="font-size:.68rem;color:var(--clr-muted);">Modern stack</div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- Tech brand row -->
+        <div class="clients-row reveal reveal-delay-3">
+            <p class="clients-label">Technologies I work with</p>
+            <div class="clients-logos" role="list" aria-label="Technology stack">
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#61DAFB;opacity:.6;">React.js</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#4630EB;opacity:.6;">React Native</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#000000;opacity:.6;">Next.js</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#339933;opacity:.6;">Node.js</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#FF6B35;opacity:.6;">Express.js</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#009688;opacity:.6;">NestJS</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#009688;opacity:.6;">FastAPI</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#47A248;opacity:.6;">MongoDB</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#4479A1;opacity:.6;">MySQL</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#2D3748;opacity:.6;">Prisma ORM</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#764ABC;opacity:.6;">Redux Toolkit</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#2496ED;opacity:.6;">Docker</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#FF9900;opacity:.6;">AWS</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#E01E5A;opacity:.6;">Redis</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#231F20;opacity:.6;">Kafka</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#7C3AED;opacity:.6;">AI / ML</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#06B6D4;opacity:.6;">IoT</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#F7DF1E;opacity:.6;">JavaScript</span>
+              <span role="listitem" style="font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#3776AB;opacity:.6;">Python</span>
+            </div>
         </div>
-        
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up">
-          <span class="gradient-text">Hi, I'm</span>
-          <br>
-          <span class="text-white hover:text-netflix transition-colors duration-500">Sanil Surve</span>
-        </h1>
-        
-        <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-          A passionate <span class="text-netflix font-semibold">Full Stack Developer</span> crafting innovative solutions with 
-          <span class="gradient-text font-semibold">MERN stack, AI, and IoT</span> technologies.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
-          <a href="#projects" class="bg-netflix hover:bg-red-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl animate-glow">
-            View My Work
-          </a>
-          <a href="#about" class="glass border-white/20 hover:border-netflix/50 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105">
-            Learn More
-          </a>
-        </div>
-        
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg class="w-6 h-6 text-netflix" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-netflix-dark">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 gradient-text animate-slide-up">
-          About Me
-        </h2>
-        
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="glass p-8 rounded-2xl card-hover animate-slide-up">
-            <h3 class="text-2xl font-bold mb-6 text-netflix">My Journey</h3>
-            <p class="text-lg leading-relaxed text-gray-300 mb-6">
-              I'm a passionate developer focused on creating <span class="text-netflix font-semibold">innovative and efficient solutions</span>. 
-              With a strong foundation in web development, I transform complex ideas into elegant, user-friendly applications.
-            </p>
-            <p class="text-lg leading-relaxed text-gray-300">
-              My expertise spans across the <span class="gradient-text font-semibold">full technology stack</span>, 
-              from frontend React applications to robust backend systems, with a special interest in 
-              <span class="text-netflix font-semibold">AI integration and IoT solutions</span>.
-            </p>
-          </div>
-          
-          <div class="space-y-6 animate-fade-in">
-            <div class="glass p-6 rounded-xl card-hover">
-              <div class="flex items-center mb-4">
-                <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center mr-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                  </svg>
-                </div>
-                <h4 class="text-xl font-bold text-white">Full Stack Development</h4>
-              </div>
-              <p class="text-gray-300">Building end-to-end web applications with modern technologies</p>
+      <!-- ============================================================
+           ABOUT
+      ============================================================ -->
+      <section id="about" aria-label="About me">
+        <div class="container">
+          <div class="about-grid">
+            <div class="reveal">
+              <span class="section-label" aria-hidden="true">— Who I Am</span>
+              <h2 class="section-title">Turning Ideas into<br><span class="gradient-text">Elegant Reality</span></h2>
+              <p class="section-desc">
+                I'm a passionate developer focused on creating innovative and efficient solutions. With a strong foundation in web development, I transform complex ideas into elegant, user-friendly applications that make a real impact.
+              </p>
+              <p class="section-desc">
+                My expertise spans the full technology stack — from pixel-perfect React UIs to robust backend systems — with a special interest in AI integration and IoT solutions.
+              </p>
+              <a href="#contact" class="btn btn-primary">Let's Work Together</a>
             </div>
-            
-            <div class="glass p-6 rounded-xl card-hover">
-              <div class="flex items-center mb-4">
-                <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center mr-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                  </svg>
-                </div>
-                <h4 class="text-xl font-bold text-white">AI & Innovation</h4>
-              </div>
-              <p class="text-gray-300">Integrating artificial intelligence into practical solutions</p>
-            </div>
-            
-            <div class="glass p-6 rounded-xl card-hover">
-              <div class="flex items-center mb-4">
-                <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center mr-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
-                  </svg>
-                </div>
-                <h4 class="text-xl font-bold text-white">IoT Solutions</h4>
-              </div>
-              <p class="text-gray-300">Creating connected systems and smart automation</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-netflix-darker">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 sm:mb-12 gradient-text">Skills</h2>
-        
-        <div class="space-y-10">
-          <!-- Skill Row 1: Netflix-like row slider -->
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">Frontend</h3>
-            <div class="relative group">
-              <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
-                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                  <h4 class="text-xl font-bold">HTML & CSS</h4>
-                  <p class="text-gray-300 mt-2">Responsive layouts & accessibility</p>
-                </div>
-                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                  <h4 class="text-xl font-bold">JavaScript</h4>
-                  <p class="text-gray-300 mt-2">Modern ES features & tooling</p>
-                </div>
-                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                  <h4 class="text-xl font-bold">React & Redux Toolkit</h4>
-                  <p class="text-gray-300 mt-2">UI & state management</p>
-                </div>
-                <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                  <h4 class="text-xl font-bold">Tailwind CSS</h4>
-                  <p class="text-gray-300 mt-2">Utility-first styling</p>
+            <div class="about-cards reveal reveal-delay-2">
+              <div class="about-card">
+                <div class="about-card-icon" style="background:var(--clr-orange-lt);">💻</div>
+                <div>
+                  <div class="about-card-title">Full Stack Development</div>
+                  <div class="about-card-desc">End-to-end web applications with modern technologies</div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <!-- Skill Row 2 -->
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">Backend & Databases</h3>
-            <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
-              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                <h4 class="text-xl font-bold">Node.js</h4>
-                <p class="text-gray-300 mt-2">APIs & services</p>
+              <div class="about-card">
+                <div class="about-card-icon" style="background:var(--clr-purple-lt);">🤖</div>
+                <div>
+                  <div class="about-card-title">AI &amp; Innovation</div>
+                  <div class="about-card-desc">Integrating artificial intelligence into practical solutions</div>
+                </div>
               </div>
-              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                <h4 class="text-xl font-bold">MongoDB & SQL</h4>
-                <p class="text-gray-300 mt-2">Schema design & performance</p>
+              <div class="about-card">
+                <div class="about-card-icon" style="background:var(--clr-cyan-lt);">📡</div>
+                <div>
+                  <div class="about-card-title">IoT Solutions</div>
+                  <div class="about-card-desc">Creating connected systems and smart automation</div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <!-- Skill Row 3 -->
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">AI & IoT</h3>
-            <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
-              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                <h4 class="text-xl font-bold">AI & ML</h4>
-                <p class="text-gray-300 mt-2">Applied ML for real apps</p>
-              </div>
-              <div class="min-w-[220px] glass p-6 rounded-xl card-hover">
-                <h4 class="text-xl font-bold">IoT</h4>
-                <p class="text-gray-300 mt-2">Hardware + cloud systems</p>
+              <div class="about-card">
+                <div class="about-card-icon" style="background:var(--clr-green-lt);">🎨</div>
+                <div>
+                  <div class="about-card-title">UI / UX Design</div>
+                  <div class="about-card-desc">Crafting beautiful, accessible user interfaces</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-netflix-dark">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 gradient-text">Featured Projects</h2>
-        
-        <div class="space-y-12">
-          <!-- Featured Project Row -->
-          <div>
-            <h3 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 text-white">🚀 Latest Work</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-              
-              <!-- Project 1: Academixaid - Hero Project -->
-              <div class="md:col-span-2 group relative glass rounded-2xl overflow-hidden card-hover">
-                <div class="relative h-80">
-                  <a href="https://academixaid.site" target="_blank">
-                    <img
-                      src="assets/project-1.png"
-                      alt="Academixaid - Academic QnA Platform"
-                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                  </a>
-                  
-                  <!-- Project overlay -->
-                  <div class="absolute bottom-0 left-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 class="text-3xl font-bold mb-2 text-white">Academixaid</h4>
-                    <p class="text-gray-300 mb-4 text-lg leading-relaxed">
-                      AI-powered Q&A platform revolutionizing academic assistance with smart chat and advanced search functionality.
-                    </p>
-                    <div class="flex gap-3">
-                      <span class="px-3 py-1 bg-netflix/80 text-white text-sm rounded-full">AI/ML</span>
-                      <span class="px-3 py-1 bg-netflix/80 text-white text-sm rounded-full">React</span>
-                      <span class="px-3 py-1 bg-netflix/80 text-white text-sm rounded-full">Node.js</span>
-                    </div>
-                    <a
-                      href="https://academixaid.vercel.app/"
-                      target="_blank"
-                      class="inline-block mt-4 bg-netflix hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
-                    >
-                      Explore Live →
-                    </a>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Projects 2 & 3: Side Projects -->
-              <div class="space-y-6">
-                <!-- Project 2 -->
-                <div class="group glass rounded-xl overflow-hidden card-hover h-48">
-                  <div class="relative h-full">
-                    <a href="https://linguist-iq.vercel.app" target="_blank">
-                      <img
-                        src="assets/project-2.png"
-                        alt="LinguistIQ Chrome Extension"
-                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                    </a>
-                    
-                    <div class="absolute bottom-0 left-0 p-4">
-                      <h4 class="text-xl font-bold text-white mb-1">LinguistIQ</h4>
-                      <p class="text-gray-300 text-sm mb-2">Chrome extension for interactive learning</p>
-                      <div class="flex gap-2">
-                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">Extension</span>
-                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">React</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="group glass rounded-xl overflow-hidden card-hover h-48">
-                  <div class="relative h-full">
-                    <a href="https://ai-chat-app-web.vercel.app/" target="_blank">
-                      <img
-                        src="assets/project-3.png"
-                        alt="AI Chatbot with Streaming Output"
-                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                    </a>
-                    
-                    <div class="absolute bottom-0 left-0 p-4">
-                      <h4 class="text-xl font-bold text-white mb-1">AI Chatbot with Streaming Output</h4>
-                      <p class="text-gray-300 text-sm mb-2">A Customer Support Chatbot</p>
-                      <div class="flex gap-2">
-                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">React & Tailwind</span>
-                        <span class="px-2 py-1 bg-netflix/80 text-white text-xs rounded">LLM with Websockets and Express.js</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <!-- ============================================================
+           SKILLS
+      ============================================================ -->
+      <div class="skills-grid" role="list" aria-label="Skill list">
+        <div class="skill-card reveal" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-orange-lt);">⚛️</div>
+          <div class="skill-name">React.js</div>
+          <div class="skill-tag">Frontend</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-1" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-cyan-lt);">▲</div>
+          <div class="skill-name">Next.js</div>
+          <div class="skill-tag">Full Stack</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-2" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-purple-lt);">📱</div>
+          <div class="skill-name">React Native</div>
+          <div class="skill-tag">Mobile Apps</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-3" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-orange-lt);">✨</div>
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-tag">Core Language</div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-card reveal" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-green-lt);">🟩</div>
+          <div class="skill-name">Node.js</div>
+          <div class="skill-tag">Backend</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-1" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-green-lt);">🚀</div>
+          <div class="skill-name">Express.js</div>
+          <div class="skill-tag">Backend</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-2" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-cyan-lt);">⚡</div>
+          <div class="skill-name">FastAPI</div>
+          <div class="skill-tag">Python Backend</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-3" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-purple-lt);">🏗️</div>
+          <div class="skill-name">NestJS</div>
+          <div class="skill-tag">Enterprise Backend</div>
+        </div>
+
+        <!-- Database -->
+        <div class="skill-card reveal" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-green-lt);">🍃</div>
+          <div class="skill-name">MongoDB</div>
+          <div class="skill-tag">NoSQL Database</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-1" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-orange-lt);">🗄️</div>
+          <div class="skill-name">MySQL</div>
+          <div class="skill-tag">Relational DB</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-2" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-purple-lt);">🔺</div>
+          <div class="skill-name">Prisma ORM</div>
+          <div class="skill-tag">Database ORM</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-3" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-purple-lt);">🔷</div>
+          <div class="skill-name">Redux Toolkit</div>
+          <div class="skill-tag">State Management</div>
+        </div>
+
+        <!-- Cloud & DevOps -->
+        <div class="skill-card reveal" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-cyan-lt);">🐳</div>
+          <div class="skill-name">Docker</div>
+          <div class="skill-tag">Containerization</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-1" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-orange-lt);">☁️</div>
+          <div class="skill-name">AWS</div>
+          <div class="skill-tag">Cloud Platform</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-2" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-green-lt);">⚡</div>
+          <div class="skill-name">Redis</div>
+          <div class="skill-tag">Caching</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-3" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-purple-lt);">📨</div>
+          <div class="skill-name">Kafka</div>
+          <div class="skill-tag">Event Streaming</div>
+        </div>
+
+        <!-- AI / Realtime / IoT -->
+        <div class="skill-card reveal" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-purple-lt);">🤖</div>
+          <div class="skill-name">AI / ML</div>
+          <div class="skill-tag">Generative AI</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-1" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-cyan-lt);">🔌</div>
+          <div class="skill-name">WebSockets</div>
+          <div class="skill-tag">Real-time Apps</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-2" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-cyan-lt);">📡</div>
+          <div class="skill-name">IoT</div>
+          <div class="skill-tag">Hardware + Cloud</div>
+        </div>
+
+        <div class="skill-card reveal reveal-delay-3" role="listitem">
+          <div class="skill-icon" style="background:var(--clr-orange-lt);">🐍</div>
+          <div class="skill-name">Python</div>
+          <div class="skill-tag">AI & Automation</div>
+        </div>
+
+      </div>
+      <!-- ============================================================
+           SERVICES
+      ============================================================ -->
+      <section id="services" aria-label="Services I offer">
+        <div class="blob" style="width:400px;height:400px;background:rgba(255,107,53,.08);top:0;right:-100px;" aria-hidden="true"></div>
+        <div class="blob" style="width:300px;height:300px;background:rgba(124,58,237,.08);bottom:0;left:-50px;animation-delay:2s;" aria-hidden="true"></div>
+        <div class="container" style="position:relative;z-index:1;">
+          <div class="section-header centered reveal">
+            <span class="section-label" aria-hidden="true">— What I Offer</span>
+            <h2 class="section-title">My Awesome <span class="gradient-text">Services</span></h2>
+            <p class="section-desc" style="max-width:480px;margin:0 auto;">From concept to deployment, I deliver end-to-end solutions tailored to your specific needs and business goals.</p>
+          </div>
+
+          <div class="services-grid">
+            <div class="service-card reveal">
+              <div class="service-icon" style="background:var(--clr-orange-lt);">💻</div>
+              <h3 class="service-title">Web Development</h3>
+              <p class="service-desc">Full-stack web applications built with modern MERN stack. Scalable, performant, and maintainable codebases delivered on time.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-1">
+              <div class="service-icon" style="background:var(--clr-purple-lt);">🎨</div>
+              <h3 class="service-title">UI / UX Design</h3>
+              <p class="service-desc">Beautiful, user-centered interfaces that balance aesthetics with functionality. Responsive designs that work perfectly across all devices.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-2">
+              <div class="service-icon" style="background:var(--clr-cyan-lt);">🤖</div>
+              <h3 class="service-title">AI Integration</h3>
+              <p class="service-desc">Embedding AI and ML capabilities into existing or new products — from chatbots and recommendation engines to intelligent automation.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-3">
+              <div class="service-icon" style="background:var(--clr-green-lt);">📡</div>
+              <h3 class="service-title">IoT Solutions</h3>
+              <p class="service-desc">Connected hardware and cloud systems that collect, process, and act on sensor data in real time. Arduino, ESP32, cloud dashboards.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="service-icon" style="background:var(--clr-orange-lt);">⚡</div>
+              <h3 class="service-title">API Development</h3>
+              <p class="service-desc">RESTful and real-time APIs built with Express.js and WebSockets. Secure, well-documented, and optimized for performance.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-1">
+              <div class="service-icon" style="background:var(--clr-purple-lt);">🔌</div>
+              <h3 class="service-title">Chrome Extensions</h3>
+              <p class="service-desc">Powerful browser extensions that enhance productivity and user experience, like LinguistIQ — interactive learning right in the browser.</p>
             </div>
           </div>
-          
-          <!-- Call to action -->
-          <div class="text-center pt-8">
-            <a href="#contact" class="inline-flex items-center bg-gradient-to-r from-netflix to-red-600 hover:from-red-600 hover:to-netflix text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
-              Let's Build Something Amazing
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PROJECTS
+      ============================================================ -->
+      <section id="projects" aria-label="Featured projects">
+        <div class="container">
+          <div class="projects-header reveal">
+            <div class="projects-header-row">
+              <div>
+                <span class="section-label" aria-hidden="true">— Recent Work</span>
+                <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+              </div>
+              <a href="https://github.com/Sanil-Surve" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="View all projects on GitHub">
+                View All
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="bento-grid reveal reveal-delay-1">
+            <!-- Main project -->
+            <a href="https://royalrentalcars.in/" target="_blank" rel="noopener noreferrer" class="project-card bento-main" aria-label="Academixaid — AI-powered Academic Q&A Platform. Opens in new tab.">
+              <img
+                src="assets/royalcars.png"
+                alt="Royal Cars - A Car Rental Platform"
+                class="project-thumb"
+                width="800"
+                height="380"
+                loading="eager"
+              />
+              <div class="project-overlay">
+                <h3 class="project-title">Royal Cars</h3>
+                <p class="project-desc">Royal Cars - A Car Rental Platform</p>
+                <div class="project-tags">
+                  <span class="project-tag">React</span>
+                  <span class="project-tag">FastAPI</span>
+                  <span class="project-tag">MongoDB</span>
+                </div>
+                <span class="project-cta" aria-hidden="true">
+                  Explore Live
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- Side project 1 -->
+            <a href="https://linguist-iq.vercel.app" target="_blank" rel="noopener noreferrer" class="project-card bento-side" aria-label="LinguistIQ — Chrome extension for interactive learning. Opens in new tab.">
+              <img
+                src="assets/project-2.png"
+                alt="LinguistIQ Chrome extension screenshot"
+                class="project-thumb"
+                width="400"
+                height="180"
+                loading="lazy"
+              />
+              <div class="project-overlay">
+                <h3 class="project-title">LinguistIQ</h3>
+                <p class="project-desc">Chrome extension for interactive language learning.</p>
+                <div class="project-tags">
+                  <span class="project-tag">Extension</span>
+                  <span class="project-tag">React</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Side project 2 -->
+            <a href="https://ai-chat-app-web.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card bento-side" aria-label="AI Chatbot with Streaming Output — customer support chatbot. Opens in new tab.">
+              <img
+                src="assets/project-3.png"
+                alt="AI Chatbot with streaming output screenshot"
+                class="project-thumb"
+                width="400"
+                height="180"
+                loading="lazy"
+              />
+              <div class="project-overlay">
+                <h3 class="project-title">AI Chatbot</h3>
+                <p class="project-desc">Real-time customer support chatbot with streaming.</p>
+                <div class="project-tags">
+                  <span class="project-tag">LLM</span>
+                  <span class="project-tag">WebSockets</span>
+                  <span class="project-tag">Express.js</span>
+                </div>
+              </div>
             </a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-netflix-darker">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 gradient-text">Let's Connect</h2>
-        <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-          Ready to build something extraordinary together? I'm always excited to discuss new opportunities and innovative projects.
-        </p>
-        
-        <div class="flex flex-wrap justify-center gap-6 mb-12">
-          <a href="mailto:sanilsurve@example.com" class="glass p-6 rounded-xl card-hover flex items-center gap-4 hover:border-netflix/50">
-            <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
+      <!-- ============================================================
+           CONTACT
+      ============================================================ -->
+      <section id="contact" aria-label="Contact information">
+        <div class="container">
+          <div class="contact-inner">
+            <div class="reveal">
+              <span class="section-label" aria-hidden="true">— Get In Touch</span>
+              <h2 class="contact-title">Let's Build Something <span class="gradient-text">Amazing</span></h2>
+              <p class="contact-desc">Ready to bring your vision to life? I'm always excited to discuss new opportunities, innovative projects, and creative ideas.</p>
             </div>
-            <div class="text-left">
-              <h3 class="font-semibold text-white">Email</h3>
-              <p class="text-gray-300">sanilsurve42@gmail.com</p>
+            <div class="contact-cards reveal reveal-delay-1">
+              <a href="mailto:sanilsurve42@gmail.com" class="contact-card" aria-label="Send email to sanilsurve42@gmail.com">
+                <div class="contact-card-icon" style="background:var(--clr-orange-lt);" aria-hidden="true">✉️</div>
+                <div>
+                  <div class="contact-card-label">Email</div>
+                  <div class="contact-card-value">sanilsurve42@gmail.com</div>
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/sanil-surve-4585bb1a9/" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Connect on LinkedIn (opens in new tab)">
+                <div class="contact-card-icon" style="background:#EBF5FB;" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#0077B5" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </div>
+                <div>
+                  <div class="contact-card-label">LinkedIn</div>
+                  <div class="contact-card-value">Connect with me</div>
+                </div>
+              </a>
+              <a href="https://github.com/Sanil-Surve" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="View GitHub profile (opens in new tab)">
+                <div class="contact-card-icon" style="background:var(--clr-bg);" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#1A1A2E" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </div>
+                <div>
+                  <div class="contact-card-label">GitHub</div>
+                  <div class="contact-card-value">Check out my code</div>
+                </div>
+              </a>
             </div>
-          </a>
-          
-          <a href="https://www.linkedin.com/in/sanil-surve-4585bb1a9/" target="_blank" class="glass p-6 rounded-xl card-hover flex items-center gap-4 hover:border-netflix/50">
-            <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
+            <div class="reveal reveal-delay-2">
+              <a href="mailto:sanilsurve42@gmail.com" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem;">
+                Start a Conversation
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
             </div>
-            <div class="text-left">
-              <h3 class="font-semibold text-white">LinkedIn</h3>
-              <p class="text-gray-300">Connect with me</p>
-            </div>
-          </a>
-          
-          <a href="https://github.com/Sanil-Surve" target="_blank" class="glass p-6 rounded-xl card-hover flex items-center gap-4 hover:border-netflix/50">
-            <div class="w-12 h-12 bg-netflix rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <div class="text-left">
-              <h3 class="font-semibold text-white">GitHub</h3>
-              <p class="text-gray-300">Check out my code</p>
-            </div>
-          </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="bg-netflix-darker border-t border-netflix-gray py-8">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="mb-4 md:mb-0">
-            <h3 class="text-xl font-bold gradient-text">SANIL SURVE</h3>
-            <p class="text-gray-400 mt-1">Full Stack Developer</p>
-          </div>
-          
-          <div class="flex gap-6">
-            <a href="#about" class="text-gray-400 hover:text-netflix transition-colors">About</a>
-            <a href="#skills" class="text-gray-400 hover:text-netflix transition-colors">Skills</a>
-            <a href="#projects" class="text-gray-400 hover:text-netflix transition-colors">Projects</a>
-            <a href="#contact" class="text-gray-400 hover:text-netflix transition-colors">Contact</a>
-          </div>
-          
-          <p class="text-gray-400 text-sm mt-4 md:mt-0">
-            &copy; 2025 Sanil Surve. Crafted with ❤️
-          </p>
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <a href="#hero" class="footer-logo gradient-text" aria-label="Back to top — Sanil Surve">SS</a>
+          <ul class="footer-links" role="list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <p class="footer-copy">© 2025 Sanil Surve. Crafted with ❤️</p>
+        </div>
+        <div class="footer-address-row">
+          <p class="footer-address-name">Sanil Pradip Surve</p>
+          <p class="footer-address-text">At/Post Tavasal, Tal&nbsp;Guhagar, Dist.&nbsp;Ratnagiri – 415613</p>
         </div>
       </div>
     </footer>
 
+    <!-- ============================================================
+         SCRIPTS
+    ============================================================ -->
+    <style>
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .3; }
+      }
+    </style>
     <script>
-      // Enhanced mobile menu toggle
-      const menuToggle = document.getElementById("menu-toggle");
-      const menu = document.getElementById("menu");
-
-      menuToggle?.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
-
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-            // Close mobile menu if open
-            if (menu) menu.classList.add('hidden');
-          }
-        });
-      });
-
-      // Add scrollbar styling for skill rows
-      const style = document.createElement('style');
-      style.textContent = `
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        
-        /* Add subtle scroll indicators */
-        .overflow-x-auto {
-          position: relative;
-        }
-        .overflow-x-auto::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 30px;
-          height: 100%;
-          background: linear-gradient(to right, transparent, rgba(20, 20, 20, 0.8));
-          pointer-events: none;
-        }
-      `;
-      document.head.appendChild(style);
-
-      // Add intersection observer for scroll animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, observerOptions);
-
-      // Observe elements for animation
-      document.querySelectorAll('.animate-slide-up, .animate-fade-in, .animate-scale-in').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
-      });
-
-      // Add dynamic header background on scroll
-      let lastScrollTop = 0;
-      const header = document.querySelector('header');
-      
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 100) {
-          header.classList.add('backdrop-blur-lg');
-          header.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
-        } else {
-          header.style.backgroundColor = 'rgba(20, 20, 20, 0.8)';
-        }
-        
-        lastScrollTop = scrollTop;
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      // Hamburger menu
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
       });
+
+      // Close mobile nav on link click
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Intersection Observer for scroll reveals
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      } else {
+        // Respect reduced motion — show everything immediately
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      }
     </script>
   </body>
 </html>
